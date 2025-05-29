@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urban Hikers - Discover Your City</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'urban-gold': '#FFD700',
+                        'urban-orange': '#FFA500'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-yellow-400 to-orange-400 text-black p-4 fixed w-full top-0 z-50 shadow-lg">
+        <nav class="container mx-auto flex justify-between items-center max-w-7xl">
+            <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center">
+                    <span class="text-yellow-400 font-bold text-xl">UH</span>
+                </div>
+                <div class="text-2xl font-bold">Urban Hikers</div>
+            </div>
+            
+            <ul class="hidden md:flex space-x-8">
+                <li><a href="#routes" class="hover:bg-black/10 px-4 py-2 rounded-full transition-all">Routes</a></li>
+                <li><a href="#pricing" class="hover:bg-black/10 px-4 py-2 rounded-full transition-all">Pricing</a></li>
+                <li><a href="#about" class="hover:bg-black/10 px-4 py-2 rounded-full transition-all">About</a></li>
+            </ul>
+            
+            <div class="flex space-x-4">
+                <button onclick="handleSignIn()" class="bg-black text-yellow-400 px-6 py-3 rounded-full font-bold hover:shadow-xl transition-all">
+                    Sign In
+                </button>
+                <button onclick="handleSignUp()" class="bg-white text-black px-6 py-3 rounded-full font-bold hover:shadow-xl transition-all border border-black/20">
+                    Sign Up
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 text-center overflow-hidden min-h-screen flex items-center">
+        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" 
+             style="background-image: url('https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')">
+        </div>
+        <div class="absolute inset-0 bg-black/40"></div>
+        <div class="container mx-auto relative z-10 max-w-4xl">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6 text-white">
+                Discover Your City Through<br>Themed Walking Adventures
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 text-white/90">
+                Join guided tours, create your own routes, and explore hidden gems in your city with fellow urban explorers.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="scrollToRoutes()" class="bg-black text-yellow-400 px-8 py-4 rounded-full text-lg font-bold hover:shadow-2xl transition-all">
+                    Explore Routes
+                </button>
+                <button onclick="handleSignUp()" class="bg-white text-black px-8 py-4 rounded-full text-lg font-bold hover:shadow-2xl transition-all border border-black/20">
+                    Get Started
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 bg-gradient-to-r from-gray-50 to-white">
+        <div class="container mx-auto max-w-6xl px-6">
+            <h2 class="text-4xl font-bold text-center mb-4 text-gray-800">Why Choose Urban Hikers?</h2>
+            <div class="w-16 h-1 bg-gradient-to-r from-yellow-400 to-orange-400 mx-auto mb-16 rounded"></div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all hover:-translate-y-2 border border-yellow-400/20">
+                    <div class="w-16 h-16 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-2xl flex items-center justify-center text-black text-2xl mb-6">
+                        📍
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">Curated Routes</h3>
+                    <p class="text-gray-600 leading-relaxed">Discover carefully crafted walking routes featuring historical landmarks, street art, food tours, and hidden local gems.</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all hover:-translate-y-2 border border-yellow-400/20">
+                    <div class="w-16 h-16 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-2xl flex items-center justify-center text-black text-2xl mb-6">
+                        👥
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">Community Driven</h3>
+                    <p class="text-gray-600 leading-relaxed">Connect with fellow urban explorers, share experiences, and discover routes created by local experts and passionate walkers.</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all hover:-translate-y-2 border border-yellow-400/20">
+                    <div class="w-16 h-16 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-2xl flex items-center justify-center text-black text-2xl mb-6">
+                        📱
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">Smart Navigation</h3>
+                    <p class="text-gray-600 leading-relaxed">GPS-guided tours with offline maps, audio commentary, and AR features to enhance your walking experience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Routes Section -->
+    <section id="routes" class="py-20 bg-gray-50">
+        <div class="container mx-auto max-w-6xl px-6">
+            <h2 class="text-4xl font-bold text-center mb-4 text-gray-800">Featured Routes</h2>
+            <div class="w-16 h-1 bg-gradient-to-r from-yellow-400 to-orange-400 mx-auto mb-16 rounded"></div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Route Card 1 -->
+                <div class="bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-all hover:-translate-y-2">
+                    <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Historic Downtown" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="bg-yellow-400 text-black px-3 py-1 rounded-full text-sm font-semibold">Historic</span>
+                            <div class="flex items-center text-yellow-500">
+                                ⭐ <span class="ml-1 text-sm text-gray-600">4.8</span>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Historic Downtown Walking Tour</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Explore the rich history of downtown through historic buildings, monuments, and guided storytelling.</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center text-gray-500 text-sm">
+                                ⏰ <span class="ml-1">2.5 hrs</span>
+                            </div>
+                            <div class="flex items-center text-gray-500 text-sm">
+                                📍 <span class="ml-1">3.2 km</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-2xl font-bold text-yellow-400">$25</span>
+                            <button onclick="bookRoute('Historic Downtown Tour')" class="bg-black text-yellow-400 px-6 py-2 rounded-full font-semibold hover:shadow-lg transition-all">
+                                Book Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Route Card 2 -->
+                <div class="bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-all hover:-translate-y-2">
+                    <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Street Art" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="bg-orange-400 text-black px-3 py-1 rounded-full text-sm font-semibold">Art & Culture</span>
+                            <div class="flex items-center text-yellow-500">
+                                ⭐ <span class="ml-1 text-sm text-gray-600">4.9</span>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Street Art Discovery</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Discover vibrant murals and street art while learning about local artists and their inspiring stories.</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center text-gray-500 text-sm">
+                                ⏰ <span class="ml-1">1.5 hrs</span>
+                            </div>
+                            <div class="flex items-center text-gray-500 text-sm">
+                                📍 <span class="ml-1">2.1 km</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-2xl font-bold text-yellow-400">$20</span>
+                            <button onclick="bookRoute('Street Art Discovery')" class="bg-black text-yellow-400 px-6 py-2 rounded-full font-semibold hover:shadow-lg transition-all">
+                                Book Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Route Card 3 -->
+                <div class="bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-all hover:-translate-y-2">
+                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Food Tour" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="bg-yellow-400 text-black px-3 py-1 rounded-full text-sm font-semibold">Food & Drink</span>
+                            <div class="flex items-center text-yellow-500">
+                                ⭐ <span class="ml-1 text-sm text-gray-600">4.7</span>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Foodie Adventure</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Taste your way through the city's best local eateries, food trucks, and hidden culinary gems.</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center text-gray-500 text-sm">
+                                ⏰ <span class="ml-1">3 hrs</span>
+                            </div>
+                            <div class="flex items-center text-gray-500 text-sm">
+                                📍 <span class="ml-1">2.8 km</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-2xl font-bold text-yellow-400">$45</span>
+                            <button onclick="bookRoute('Foodie Adventure')" class="bg-black text-yellow-400 px-6 py-2 rounded-full font-semibold hover:shadow-lg transition-all">
+                                Book Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <button class="bg-gradient-to-r from-yellow-400 to-orange-400 text-black px-8 py-4 rounded-full text-lg font-bold hover:shadow-xl transition-all">
+                    View All Routes
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto max-w-6xl px-6">
+            <h2 class="text-4xl font-bold text-center mb-4 text-gray-800">What Urban Explorers Say</h2>
+            <div class="w-16 h-1 bg-gradient-to-r from-yellow-400 to-orange-400 mx-auto mb-16 rounded"></div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all">
+                    <div class="flex items-center mb-6">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100" alt="Jeanmarie" class="w-12 h-12 rounded-full object-cover mr-4">
+                        <div>
+                            <h4 class="font-bold text-gray-800">Jeanmarie</h4>
+                            <p class="text-sm text-gray-500">Jacksonville, FL</p>
+                            <div class="flex items-center gap-2 mt-1">
+                                <div class="flex text-yellow-500">⭐⭐⭐⭐⭐</div>
+                                <span class="text-sm text-gray-500">April 2021</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"In an era where online algorithms control many of our interactions with one another, funneling us into echo chambers with more people just like us, it's fantastic to find an experience like Vanny's Urban Hiking, which is designed to foster authentic engagement and meaningful conversation."</p>
+                </div>
+
+                <div class="bg-gray-50 p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all">
+                    <div class="flex items-center mb-6">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100" alt="Janet" class="w-12 h-12 rounded-full object-cover mr-4">
+                        <div>
+                            <h4 class="font-bold text-gray-800">Janet</h4>
+                            <p class="text-sm text-gray-500">New York, NY</p>
+                            <div class="flex items-center gap-2 mt-1">
+                                <div class="flex text-yellow-500">⭐⭐⭐⭐⭐</div>
+                                <span class="text-sm text-gray-500">December 2021</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"I enjoyed walking and conversing with Vanny throughout downtown Cincinnati and Covington Kentucky! I didn't know much about Cinny, but through the walk I learned a bit about the city and it's evolving history. Vanny was also very personable and inviting."</p>
+                </div>
+
+                <div class="bg-gray-50 p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all">
+                    <div class="flex items-center mb-6">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100" alt="Imee" class="w-12 h-12 rounded-full object-cover mr-4">
+                        <div>
+                            <h4 class="font-bold text-gray-800">Imee</h4>
+                            <p class="text-sm text-gray-500">Columbus, OH</p>
+                            <div class="flex items-center gap-2 mt-1">
+                                <div class="flex text-yellow-500">⭐⭐⭐⭐⭐</div>
+                                <span class="text-sm text-gray-500">June 2021</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"This was an amazing experience! We've been to Cincinnati many times, but after this urban hike, we feel even better acquainted with the city. Often we would just drive to one point of attraction but this was a great way to see the city."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-r from-yellow-400 to-orange-400">
+        <div class="container mx-auto max-w-4xl px-6 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6 text-black">Ready to Start Your Urban Adventure?</h2>
+            <p class="text-xl mb-8 text-black/80">Join thousands of explorers discovering their cities one step at a time.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="handleSignUp()" class="bg-black text-yellow-400 px-8 py-4 rounded-full text-lg font-bold hover:shadow-2xl transition-all">
+                    Get Started Free
+                </button>
+                <button class="bg-white text-black px-8 py-4 rounded-full text-lg font-bold hover:shadow-2xl transition-all border border-black/20">
+                    Download App
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-16">
+        <div class="container mx-auto max-w-6xl px-6">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-yellow-400">Urban Hikers</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        Connecting urban explorers with the hidden gems and stories that make every city unique.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-yellow-400">Platform</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-yellow-400 transition-colors">Browse Routes</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-yellow-400 transition-colors">Create Route</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-yellow-400 transition-colors">Become a Guide</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-yellow-400 transition-colors">Mobile App</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-yellow-400">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-yellow-400 transition-colors">Help Center</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-yellow-400 transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-yellow-400 transition-colors">Community Forum</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-yellow-400 transition-colors">Safety Guidelines</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-yellow-400">Connect</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-yellow-400 transition-colors">About Us</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-yellow-400 transition-colors">Blog</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-yellow-400 transition-colors">Press</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-yellow-400 transition-colors">Careers</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-600 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Urban Hikers. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function scrollToRoutes() {
+            document.getElementById('routes').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function handleSignIn() {
+            alert('Sign In functionality will be implemented with Firebase Authentication');
+        }
+
+        function handleSignUp() {
+            alert('Sign Up functionality will be implemented with Firebase Authentication');
+        }
+
+        function bookRoute(routeName) {
+            alert(`Booking ${routeName} - this will be implemented with Firebase backend`);
+        }
+    </script>
+</body>
+</html>
