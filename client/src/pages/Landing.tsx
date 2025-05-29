@@ -27,21 +27,27 @@ export default function Landing() {
 
   const testimonials = [
     {
-      name: "Sarah M.",
+      name: "Jeanmarie",
+      location: "Jacksonville, FL",
       rating: 5,
-      review: "Amazing experience! I discovered parts of my own city I never knew existed. The historic downtown tour was perfectly paced and incredibly informative.",
+      date: "April 2021",
+      review: "In an era where online algorithms control many of our interactions with one another, funneling us into echo chambers with more people just like us, it's fantastic to find an experience like Vanny's Urban Hiking, which is designed to foster authentic engagement and meaningful conversation. The hike isn't intended to teach you anything about the area's buildings or history, but rather to experience the urban environment alongside interesting people with diverse experiences and fresh perspectives.",
       avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&h=100"
     },
     {
-      name: "Mike R.",
+      name: "Janet",
+      location: "New York, NY",
       rating: 5,
-      review: "The community aspect is fantastic. I've met so many like-minded people and created lasting friendships through group walks. Highly recommend!",
+      date: "December 2021",
+      review: "I enjoyed walking and conversing with Vanny throughout downtown Cincinnati and Covington Kentucky! I didn't know much about Cinny, but through the walk I learned a bit about the city and it's evolving history. Vanny was also very personable and inviting. I had a great time and you will too!",
       avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&h=100"
     },
     {
-      name: "Emma L.",
+      name: "Imee",
+      location: "Columbus, OH",
       rating: 5,
-      review: "Creating my own route was so easy! The tools are intuitive and the community feedback helped me improve it. Now it's one of the most popular routes in the city.",
+      date: "June 2021",
+      review: "This was an amazing experience! We've been to Cincinnati many times, but after this urban hike, we feel even better acquainted with the city. Often we would just drive to one point of attraction but this was a great way to see the city. And Vanny is amazing! Easy going and great to talk to. Would definitely recommend this experience to anyone!",
       avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&h=100"
     }
   ];
@@ -129,10 +135,14 @@ export default function Landing() {
                   />
                   <div>
                     <h4 className="font-bold text-gray-800">{testimonial.name}</h4>
-                    <div className="flex text-yellow-500">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 fill-current" />
-                      ))}
+                    <p className="text-sm text-gray-500">{testimonial.location}</p>
+                    <div className="flex items-center gap-2 mt-1">
+                      <div className="flex text-yellow-500">
+                        {[...Array(testimonial.rating)].map((_, i) => (
+                          <Star key={i} className="w-4 h-4 fill-current" />
+                        ))}
+                      </div>
+                      <span className="text-sm text-gray-500">{testimonial.date}</span>
                     </div>
                   </div>
                 </div>
