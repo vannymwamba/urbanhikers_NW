@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
 import { Link } from "wouter";
+import heroImageUrl from "@assets/Urban Hikers FEB27 2022_ 100.jpg";
 
 export default function Hero() {
   const { isAuthenticated } = useAuth();
@@ -13,8 +14,17 @@ export default function Hero() {
   };
 
   return (
-    <section className="bg-gradient-to-r from-[#FFD700] to-[#FFA500] pt-32 pb-20 text-center relative overflow-hidden min-h-screen flex items-center">
-      <div className="absolute inset-0 opacity-10 bg-gradient-to-br from-black/5 to-transparent"></div>
+    <section className="relative pt-32 pb-20 text-center overflow-hidden min-h-screen flex items-center">
+      {/* Background Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `url(${heroImageUrl})`
+        }}
+      />
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#FFD700]/90 to-[#FFA500]/90"></div>
+      <div className="absolute inset-0 bg-black/20"></div>
       <div className="container mx-auto relative z-10 max-w-4xl">
         <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-black to-gray-600 bg-clip-text text-transparent animate-fade-in-up">
           Discover Your City Through<br />Themed Walking Adventures

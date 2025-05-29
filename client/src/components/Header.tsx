@@ -24,18 +24,14 @@ export default function Header() {
         
         <ul className="hidden md:flex space-x-8">
           <li>
-            <Link href="/routes">
-              <a className="hover:bg-black/10 px-4 py-2 rounded-full transition-all duration-300 hover:-translate-y-1">
-                Routes
-              </a>
+            <Link href="/routes" className="hover:bg-black/10 px-4 py-2 rounded-full transition-all duration-300 hover:-translate-y-1">
+              Routes
             </Link>
           </li>
           {isAuthenticated && (
             <li>
-              <Link href="/create-route">
-                <a className="hover:bg-black/10 px-4 py-2 rounded-full transition-all duration-300 hover:-translate-y-1">
-                  Create Route
-                </a>
+              <Link href="/create-route" className="hover:bg-black/10 px-4 py-2 rounded-full transition-all duration-300 hover:-translate-y-1">
+                Create Route
               </Link>
             </li>
           )}
