@@ -7,11 +7,13 @@ export default function Header() {
   const { isAuthenticated, user } = useAuth();
 
   const handleLogin = () => {
-    window.location.href = "/api/login";
+    // TODO: Implement Firebase Google Sign-In when credentials are configured
+    console.log("Firebase authentication will be implemented when credentials are added");
   };
 
   const handleLogout = () => {
-    window.location.href = "/api/logout";
+    // TODO: Implement Firebase sign out when credentials are configured  
+    console.log("Firebase sign out will be implemented when credentials are added");
   };
 
   return (
