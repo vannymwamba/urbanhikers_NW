@@ -23,13 +23,12 @@ export default function Hero() {
         }}
       />
       {/* Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#FFD700]/90 to-[#FFA500]/90"></div>
-      <div className="absolute inset-0 bg-black/20"></div>
+      <div className="absolute inset-0 bg-black/40"></div>
       <div className="container mx-auto relative z-10 max-w-4xl">
-        <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-black to-gray-600 bg-clip-text text-transparent animate-fade-in-up">
+        <h1 className="text-5xl md:text-6xl font-bold mb-6 text-white animate-fade-in-up">
           Discover Your City Through<br />Themed Walking Adventures
         </h1>
-        <p className="text-xl md:text-2xl mb-8 text-black/80 animate-fade-in-up animation-delay-300">
+        <p className="text-xl md:text-2xl mb-8 text-white/90 animate-fade-in-up animation-delay-300">
           Join guided tours, create your own routes, and explore hidden gems in your city with fellow urban explorers.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up animation-delay-600">

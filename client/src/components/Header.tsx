@@ -1,6 +1,7 @@
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
+import logoUrl from "@assets/Circlelogo.png";
 
 export default function Header() {
   const { isAuthenticated, user } = useAuth();
@@ -17,8 +18,11 @@ export default function Header() {
     <header className="bg-gradient-to-r from-[#FFD700] to-[#FFA500] text-black p-4 fixed w-full top-0 z-50 backdrop-blur-md shadow-lg">
       <nav className="container mx-auto flex justify-between items-center max-w-7xl">
         <Link href="/">
-          <div className="text-2xl font-bold bg-gradient-to-r from-black to-gray-600 bg-clip-text text-transparent cursor-pointer">
-            🚶‍♂️ Urban Hikers
+          <div className="flex items-center space-x-3 cursor-pointer">
+            <img src={logoUrl} alt="Urban Hikers" className="w-12 h-12" />
+            <div className="text-2xl font-bold bg-gradient-to-r from-black to-gray-600 bg-clip-text text-transparent">
+              Urban Hikers
+            </div>
           </div>
         </Link>
         
@@ -51,15 +55,15 @@ export default function Header() {
           {isAuthenticated ? (
             <>
               <div className="flex items-center space-x-2">
-                {user?.profileImageUrl && (
+                {(user as any)?.profileImageUrl && (
                   <img 
-                    src={user.profileImageUrl} 
+                    src={(user as any).profileImageUrl} 
                     alt="Profile" 
                     className="w-8 h-8 rounded-full object-cover"
                   />
                 )}
                 <span className="font-medium">
-                  {user?.firstName || user?.email}
+                  {(user as any)?.firstName || (user as any)?.email}
                 </span>
               </div>
               <Button
