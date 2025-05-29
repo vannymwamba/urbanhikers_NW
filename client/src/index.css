@@ -1,0 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 100%; /* #FFFFFF */
+  --foreground: 240 10% 3.9%; /* #0A0A0B */
+  --muted: 240 4.8% 95.9%; /* #F4F4F5 */
+  --muted-foreground: 240 3.8% 46.1%; /* #71717A */
+  --popover: 0 0% 100%; /* #FFFFFF */
+  --popover-foreground: 240 10% 3.9%; /* #0A0A0B */
+  --card: 0 0% 100%; /* #FFFFFF */
+  --card-foreground: 240 10% 3.9%; /* #0A0A0B */
+  --border: 240 5.9% 90%; /* #E4E4E7 */
+  --input: 240 5.9% 90%; /* #E4E4E7 */
+  --primary: 45 100% 51%; /* #FFD700 - Gold */
+  --primary-foreground: 0 0% 0%; /* #000000 */
+  --secondary: 39 100% 50%; /* #FFA500 - Orange */
+  --secondary-foreground: 0 0% 0%; /* #000000 */
+  --accent: 45 100% 51%; /* #FFD700 - Gold */
+  --accent-foreground: 0 0% 0%; /* #000000 */
+  --destructive: 0 84.2% 60.2%; /* #EF4444 */
+  --destructive-foreground: 0 0% 98%; /* #FAFAFA */
+  --ring: 45 100% 51%; /* #FFD700 - Gold */
+  --radius: 0.5rem;
+
+  /* Custom Gold/Orange Theme Colors */
+  --gold: 45 100% 51%; /* #FFD700 */
+  --orange: 39 100% 50%; /* #FFA500 */
+  --charcoal: 0 0% 20%; /* #333333 */
+}
+
+.dark {
+  --background: 240 10% 3.9%; /* #0A0A0B */
+  --foreground: 0 0% 98%; /* #FAFAFA */
+  --muted: 240 3.7% 15.9%; /* #27272A */
+  --muted-foreground: 240 5% 64.9%; /* #A1A1AA */
+  --popover: 240 10% 3.9%; /* #0A0A0B */
+  --popover-foreground: 0 0% 98%; /* #FAFAFA */
+  --card: 240 10% 3.9%; /* #0A0A0B */
+  --card-foreground: 0 0% 98%; /* #FAFAFA */
+  --border: 240 3.7% 15.9%; /* #27272A */
+  --input: 240 3.7% 15.9%; /* #27272A */
+  --primary: 45 100% 51%; /* #FFD700 - Gold */
+  --primary-foreground: 0 0% 0%; /* #000000 */
+  --secondary: 39 100% 50%; /* #FFA500 - Orange */
+  --secondary-foreground: 0 0% 0%; /* #000000 */
+  --accent: 45 100% 51%; /* #FFD700 - Gold */
+  --accent-foreground: 0 0% 0%; /* #000000 */
+  --destructive: 0 62.8% 30.6%; /* #B91C1C */
+  --destructive-foreground: 0 0% 98%; /* #FAFAFA */
+  --ring: 45 100% 51%; /* #FFD700 - Gold */
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+/* Custom animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+.animation-delay-300 {
+  animation-delay: 0.3s;
+}
+
+.animation-delay-600 {
+  animation-delay: 0.6s;
+}
+
+/* Utility classes for text truncation */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #FFD700;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #FFA500;
+}
+
+/* Focus styles for better accessibility */
+.focus\:ring-gold:focus {
+  --tw-ring-color: #FFD700;
+}
+
+/* Loading spinner for routes page */
+.loading-spinner {
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #FFD700;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
