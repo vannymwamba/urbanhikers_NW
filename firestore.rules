@@ -1,0 +1,32 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Users can read and write their own data
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Routes can be read by anyone, but only created/updated by authenticated users
+    match /routes/{routeId} {
+      allow read: if true;
+      allow create: if request.auth != null;
+      allow update, delete: if request.auth != null && 
+        (resource.data.createdBy == request.auth.uid || request.auth.token.admin == true);
+    }
+    
+    // Bookings can only be accessed by the user who created them
+    match /bookings/{bookingId} {
+      allow read, write: if request.auth != null && 
+        (resource.data.userId == request.auth.uid || request.auth.token.admin == true);
+      allow create: if request.auth != null;
+    }
+    
+    // Reviews can be read by anyone, created by authenticated users
+    match /reviews/{reviewId} {
+      allow read: if true;
+      allow create: if request.auth != null;
+      allow update, delete: if request.auth != null && 
+        (resource.data.userId == request.auth.uid || request.auth.token.admin == true);
+    }
+  }
+}
