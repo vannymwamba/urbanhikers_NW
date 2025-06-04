@@ -212,7 +212,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (error instanceof z.ZodError) {
         return res.status(400).json({ message: "Invalid form data", errors: error.errors });
       }
-      if (error.code === '23505') { // Unique constraint violation
+      if ((error as any).code === '23505') { // Unique constraint violation
         return res.status(409).json({ message: "This email is already on our waiting list!" });
       }
       res.status(500).json({ message: "Failed to join waiting list" });
