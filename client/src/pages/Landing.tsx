@@ -203,6 +203,61 @@ export default function Landing() {
         </div>
       </section>
 
+      {/* About Section */}
+      <section id="about" className="py-20 bg-gradient-to-r from-gray-50 to-white">
+        <div className="container mx-auto max-w-4xl px-6">
+          <h2 className="text-4xl font-bold text-center mb-4 text-gray-800">Our Story</h2>
+          <div className="w-16 h-1 bg-gradient-to-r from-[#FFD700] to-[#FFA500] mx-auto mb-16 rounded"></div>
+          
+          <div className="bg-white p-12 rounded-3xl shadow-xl">
+            <div className="text-lg leading-relaxed text-gray-700 space-y-6">
+              <p>
+                In 2014, we started with a simple idea—a book club that walked. What began as casual discussions about literature while strolling through Cincinnati's parks slowly evolved into something deeper. Step by step, conversation by conversation, we realized we weren't just walking to talk—we were walking to connect.
+              </p>
+              
+              <p>
+                As our group grew, so did our purpose. The books faded into the background, but the walking remained—and with it, an unexpected transformation. Strangers became friends. Neighbors became allies. A book club became Urban Hikers: a community-powered movement dedicated to bridging divides, one step at a time.
+              </p>
+              
+              <p>
+                Today, Urban Hikers has grown beyond Cincinnati to cities across the nation. What started with a handful of book lovers has become a network of thousands who believe in the power of walking together. We've discovered that when you change the way you see your city, you change the way you see each other.
+              </p>
+              
+              <p>
+                Our mission remains simple: to create meaningful connections through shared urban adventures. Whether you're exploring historic neighborhoods, discovering hidden gems, or simply getting some fresh air with like-minded people, every step builds community.
+              </p>
+              
+              <div className="text-center mt-10">
+                <div className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[#FFD700] to-[#FFA500] rounded-full">
+                  <span className="text-black font-bold text-lg">From Cincinnati book club to nationwide movement</span>
+                </div>
+              </div>
+              
+              <div className="mt-10 pt-8 border-t border-gray-200">
+                <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">What We Believe</h3>
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-gradient-to-r from-[#FFD700] to-[#FFA500] rounded-full flex items-center justify-center mx-auto mb-4">
+                      <span className="text-black font-bold text-2xl">👥</span>
+                    </div>
+                    <h4 className="font-bold text-xl mb-3">Community First</h4>
+                    <p className="text-gray-600">Every walk is an opportunity to build bridges and create lasting friendships in your city.</p>
+                  </div>
+                  
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-gradient-to-r from-[#FFD700] to-[#FFA500] rounded-full flex items-center justify-center mx-auto mb-4">
+                      <span className="text-black font-bold text-2xl">🗺️</span>
+                    </div>
+                    <h4 className="font-bold text-xl mb-3">Urban Discovery</h4>
+                    <p className="text-gray-600">Cities are full of hidden stories and unexpected beauty waiting to be explored on foot.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Call to Action Section */}
       <section className="py-20 bg-gradient-to-r from-[#FFD700] to-[#FFA500]">
         <div className="container mx-auto max-w-4xl px-6 text-center">

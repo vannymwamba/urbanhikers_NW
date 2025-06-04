@@ -17,7 +17,7 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-gradient-to-r from-[#FFD700] to-[#FFA500] text-black p-4 fixed w-full top-0 z-50 backdrop-blur-md shadow-lg">
+    <header className="bg-gradient-to-r from-[#FFD700]/70 to-[#FFA500]/70 text-black p-4 fixed w-full top-0 z-50 backdrop-blur-md shadow-lg">
       <nav className="container mx-auto flex justify-between items-center max-w-7xl">
         <Link href="/">
           <div className="flex items-center space-x-3 cursor-pointer">
