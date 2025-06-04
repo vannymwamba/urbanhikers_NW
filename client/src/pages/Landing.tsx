@@ -258,6 +258,144 @@ export default function Landing() {
         </div>
       </section>
 
+      {/* Pricing Section */}
+      <section id="pricing" className="py-20 bg-white">
+        <div className="container mx-auto max-w-6xl px-6">
+          <h2 className="text-4xl font-bold text-center mb-4 text-gray-800">Join the Movement</h2>
+          <div className="w-16 h-1 bg-gradient-to-r from-[#FFD700] to-[#FFA500] mx-auto mb-16 rounded"></div>
+          
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {/* Individual Walk */}
+            <div className="bg-gradient-to-b from-gray-50 to-white p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+              <div className="text-center">
+                <h3 className="text-2xl font-bold mb-4 text-gray-800">Drop-In Walk</h3>
+                <div className="mb-6">
+                  <span className="text-4xl font-bold text-[#FFA500]">$25</span>
+                  <span className="text-gray-600 text-lg">/person</span>
+                </div>
+                <ul className="space-y-3 mb-8 text-left">
+                  <li className="flex items-start">
+                    <Check className="w-5 h-5 text-[#FFD700] mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">Join any scheduled walk</span>
+                  </li>
+                  <li className="flex items-start">
+                    <Check className="w-5 h-5 text-[#FFD700] mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">Meet fellow urban explorers</span>
+                  </li>
+                  <li className="flex items-start">
+                    <Check className="w-5 h-5 text-[#FFD700] mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">2-4 hour experience</span>
+                  </li>
+                  <li className="flex items-start">
+                    <Check className="w-5 h-5 text-[#FFD700] mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">No commitment required</span>
+                  </li>
+                </ul>
+                <Button 
+                  onClick={() => window.location.href = "/routes"}
+                  className="w-full bg-gradient-to-r from-[#FFD700] to-[#FFA500] text-black font-bold py-3 rounded-full hover:shadow-lg transition-all duration-300"
+                >
+                  Book a Walk
+                </Button>
+              </div>
+            </div>
+
+            {/* Monthly Membership */}
+            <div className="bg-gradient-to-b from-[#FFD700]/10 to-[#FFA500]/10 p-8 rounded-3xl shadow-xl border-2 border-[#FFD700] hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 relative">
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                <span className="bg-gradient-to-r from-[#FFD700] to-[#FFA500] text-black px-6 py-2 rounded-full text-sm font-bold">
+                  MOST POPULAR
+                </span>
+              </div>
+              <div className="text-center">
+                <h3 className="text-2xl font-bold mb-4 text-gray-800">Community Member</h3>
+                <div className="mb-6">
+                  <span className="text-4xl font-bold text-[#FFA500]">$45</span>
+                  <span className="text-gray-600 text-lg">/month</span>
+                </div>
+                <ul className="space-y-3 mb-8 text-left">
+                  <li className="flex items-start">
+                    <Check className="w-5 h-5 text-[#FFD700] mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">Unlimited monthly walks</span>
+                  </li>
+                  <li className="flex items-start">
+                    <Check className="w-5 h-5 text-[#FFD700] mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">Priority booking access</span>
+                  </li>
+                  <li className="flex items-start">
+                    <Check className="w-5 h-5 text-[#FFD700] mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">Member-only events</span>
+                  </li>
+                  <li className="flex items-start">
+                    <Check className="w-5 h-5 text-[#FFD700] mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">Digital route guides</span>
+                  </li>
+                  <li className="flex items-start">
+                    <Check className="w-5 h-5 text-[#FFD700] mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">Community Discord access</span>
+                  </li>
+                </ul>
+                <Button 
+                  onClick={() => window.location.href = "/api/login"}
+                  className="w-full bg-gradient-to-r from-black to-gray-600 text-[#FFD700] font-bold py-3 rounded-full hover:shadow-lg transition-all duration-300"
+                >
+                  Join Community
+                </Button>
+              </div>
+            </div>
+
+            {/* Private Group */}
+            <div className="bg-gradient-to-b from-gray-50 to-white p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+              <div className="text-center">
+                <h3 className="text-2xl font-bold mb-4 text-gray-800">Private Group</h3>
+                <div className="mb-6">
+                  <span className="text-4xl font-bold text-[#FFA500]">$200</span>
+                  <span className="text-gray-600 text-lg">/group</span>
+                </div>
+                <ul className="space-y-3 mb-8 text-left">
+                  <li className="flex items-start">
+                    <Check className="w-5 h-5 text-[#FFD700] mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">Custom route planning</span>
+                  </li>
+                  <li className="flex items-start">
+                    <Check className="w-5 h-5 text-[#FFD700] mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">Up to 12 participants</span>
+                  </li>
+                  <li className="flex items-start">
+                    <Check className="w-5 h-5 text-[#FFD700] mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">Dedicated guide</span>
+                  </li>
+                  <li className="flex items-start">
+                    <Check className="w-5 h-5 text-[#FFD700] mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">Flexible scheduling</span>
+                  </li>
+                  <li className="flex items-start">
+                    <Check className="w-5 h-5 text-[#FFD700] mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">Team building focused</span>
+                  </li>
+                </ul>
+                <Button 
+                  onClick={() => window.location.href = "mailto:hello@urbanhikers.com"}
+                  className="w-full bg-gradient-to-r from-[#FFD700] to-[#FFA500] text-black font-bold py-3 rounded-full hover:shadow-lg transition-all duration-300"
+                >
+                  Contact Us
+                </Button>
+              </div>
+            </div>
+          </div>
+
+          {/* Additional Info */}
+          <div className="mt-16 text-center">
+            <p className="text-gray-600 mb-4">
+              All walks include experienced guides, route materials, and post-walk community discussion.
+            </p>
+            <p className="text-sm text-gray-500">
+              No cancellation fees • Weather protection guarantee • All fitness levels welcome
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Call to Action Section */}
       <section className="py-20 bg-gradient-to-r from-[#FFD700] to-[#FFA500]">
         <div className="container mx-auto max-w-4xl px-6 text-center">
