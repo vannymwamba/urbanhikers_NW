@@ -396,22 +396,85 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* Call to Action Section */}
+      {/* Waiting List Section */}
       <section className="py-20 bg-gradient-to-r from-[#FFD700] to-[#FFA500]">
         <div className="container mx-auto max-w-4xl px-6 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-black">Ready to Start Your Urban Adventure?</h2>
-          <p className="text-xl mb-8 text-black/80">Join thousands of explorers discovering their cities one step at a time.</p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              onClick={() => window.location.href = "/api/login"}
-              className="bg-gradient-to-r from-black to-gray-600 text-[#FFD700] px-8 py-4 rounded-full text-lg font-bold transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
-            >
-              Get Started Free
-            </Button>
-            <Button className="bg-white text-black px-8 py-4 rounded-full text-lg font-bold transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border border-black/20">
-              Download App
-            </Button>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-black">Coming Soon to Your City!</h2>
+          <p className="text-xl mb-8 text-black/80">
+            Urban Hikers is launching nationwide. Join our waiting list to be the first to explore your city with fellow adventurers.
+          </p>
+          
+          {/* Waiting List Form */}
+          <div className="bg-white/95 backdrop-blur-sm p-8 rounded-3xl shadow-2xl max-w-2xl mx-auto">
+            <h3 className="text-2xl font-bold mb-6 text-gray-800">Reserve Your Spot</h3>
+            <form className="space-y-4">
+              <div className="grid md:grid-cols-2 gap-4">
+                <input
+                  type="text"
+                  placeholder="First Name"
+                  className="w-full px-4 py-3 rounded-full border border-gray-300 focus:ring-2 focus:ring-[#FFD700] focus:border-transparent outline-none"
+                  required
+                />
+                <input
+                  type="text"
+                  placeholder="Last Name"
+                  className="w-full px-4 py-3 rounded-full border border-gray-300 focus:ring-2 focus:ring-[#FFD700] focus:border-transparent outline-none"
+                  required
+                />
+              </div>
+              <input
+                type="email"
+                placeholder="Email Address"
+                className="w-full px-4 py-3 rounded-full border border-gray-300 focus:ring-2 focus:ring-[#FFD700] focus:border-transparent outline-none"
+                required
+              />
+              <select className="w-full px-4 py-3 rounded-full border border-gray-300 focus:ring-2 focus:ring-[#FFD700] focus:border-transparent outline-none">
+                <option value="">Select Your City</option>
+                <option value="cincinnati">Cincinnati, OH</option>
+                <option value="columbus">Columbus, OH</option>
+                <option value="cleveland">Cleveland, OH</option>
+                <option value="chicago">Chicago, IL</option>
+                <option value="nashville">Nashville, TN</option>
+                <option value="atlanta">Atlanta, GA</option>
+                <option value="other">Other (we'll contact you)</option>
+              </select>
+              <div className="flex items-start space-x-3 text-left">
+                <input type="checkbox" id="updates" className="mt-1.5 w-4 h-4 text-[#FFD700] rounded" />
+                <label htmlFor="updates" className="text-sm text-gray-700">
+                  Send me updates about Urban Hikers events, new routes, and community news
+                </label>
+              </div>
+              <Button 
+                type="submit"
+                className="w-full bg-gradient-to-r from-black to-gray-600 text-[#FFD700] px-8 py-4 rounded-full text-lg font-bold transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+              >
+                Join the Waiting List
+              </Button>
+            </form>
+            
+            {/* Benefits */}
+            <div className="mt-8 pt-6 border-t border-gray-200">
+              <p className="text-sm text-gray-600 mb-4 font-semibold">Waiting list members get:</p>
+              <div className="grid md:grid-cols-3 gap-4 text-sm text-gray-600">
+                <div className="flex items-center">
+                  <Check className="w-4 h-4 text-[#FFD700] mr-2" />
+                  <span>Early access to routes</span>
+                </div>
+                <div className="flex items-center">
+                  <Check className="w-4 h-4 text-[#FFD700] mr-2" />
+                  <span>Founding member pricing</span>
+                </div>
+                <div className="flex items-center">
+                  <Check className="w-4 h-4 text-[#FFD700] mr-2" />
+                  <span>Free first walk</span>
+                </div>
+              </div>
+            </div>
           </div>
+          
+          <p className="text-black/70 mt-6 text-lg">
+            Expected launch: <strong>Spring 2025</strong>
+          </p>
         </div>
       </section>
 

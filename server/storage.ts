@@ -3,6 +3,7 @@ import {
   routes,
   bookings,
   reviews,
+  waitingList,
   type User,
   type UpsertUser,
   type Route,
@@ -11,6 +12,8 @@ import {
   type InsertBooking,
   type Review,
   type InsertReview,
+  type WaitingListEntry,
+  type InsertWaitingListEntry,
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, desc, and, sql } from "drizzle-orm";
@@ -40,6 +43,10 @@ export interface IStorage {
   getReviewsByRoute(routeId: number): Promise<Review[]>;
   createReview(review: InsertReview): Promise<Review>;
   getReviewsByUser(userId: string): Promise<Review[]>;
+
+  // Waiting list operations
+  createWaitingListEntry(entry: InsertWaitingListEntry): Promise<WaitingListEntry>;
+  getWaitingListEntries(): Promise<WaitingListEntry[]>;
 }
 
 export class DatabaseStorage implements IStorage {
