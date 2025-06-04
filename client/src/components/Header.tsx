@@ -17,11 +17,11 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-gradient-to-r from-[#FFD700]/70 to-[#FFA500]/70 text-black p-4 fixed w-full top-0 z-50 backdrop-blur-md shadow-lg">
+    <header className="bg-transparent text-black p-4 fixed w-full top-0 z-50 backdrop-blur-md shadow-lg">
       <nav className="container mx-auto flex justify-between items-center max-w-7xl">
         <Link href="/">
           <div className="flex items-center space-x-3 cursor-pointer">
-            <img src={logoUrl} alt="Urban Hikers" className="w-12 h-12" />
+            <img src={logoUrl} alt="Urban Hikers" className="w-16 h-16" />
             <div className="text-2xl font-bold bg-gradient-to-r from-black to-gray-600 bg-clip-text text-transparent">
               Urban Hikers
             </div>
