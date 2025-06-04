@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Features from "@/components/Features";
@@ -7,12 +7,22 @@ import RouteCard from "@/components/RouteCard";
 import BookingModal from "@/components/BookingModal";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
 import { Star, Check } from "lucide-react";
-import type { Route } from "@shared/schema";
+import { apiRequest } from "@/lib/queryClient";
+import type { Route, InsertWaitingListEntry } from "@shared/schema";
 
 export default function Landing() {
   const [selectedRoute, setSelectedRoute] = useState<Route | null>(null);
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+  const [waitingListForm, setWaitingListForm] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    city: "",
+    wantsUpdates: false
+  });
+  const { toast } = useToast();
 
   const { data: routes = [] } = useQuery<Route[]>({
     queryKey: ["/api/routes"],
@@ -20,9 +30,50 @@ export default function Landing() {
 
   const featuredRoutes = routes.slice(0, 3);
 
+  const waitingListMutation = useMutation({
+    mutationFn: async (data: InsertWaitingListEntry) => {
+      return await apiRequest("/api/waiting-list", "POST", data);
+    },
+    onSuccess: (response) => {
+      toast({
+        title: "Welcome to Urban Hikers!",
+        description: `Thanks ${waitingListForm.firstName}! You're now on our waiting list. We'll notify you when we launch in ${waitingListForm.city}.`,
+      });
+      setWaitingListForm({
+        firstName: "",
+        lastName: "",
+        email: "",
+        city: "",
+        wantsUpdates: false
+      });
+    },
+    onError: (error: any) => {
+      toast({
+        title: "Signup Failed",
+        description: error.message || "Something went wrong. Please try again.",
+        variant: "destructive",
+      });
+    },
+  });
+
   const handleBookRoute = (route: Route) => {
     setSelectedRoute(route);
     setIsBookingModalOpen(true);
+  };
+
+  const handleWaitingListSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!waitingListForm.firstName || !waitingListForm.lastName || !waitingListForm.email || !waitingListForm.city) {
+      toast({
+        title: "Missing Information",
+        description: "Please fill in all required fields.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    waitingListMutation.mutate(waitingListForm);
   };
 
   const testimonials = [
@@ -407,17 +458,21 @@ export default function Landing() {
           {/* Waiting List Form */}
           <div className="bg-white/95 backdrop-blur-sm p-8 rounded-3xl shadow-2xl max-w-2xl mx-auto">
             <h3 className="text-2xl font-bold mb-6 text-gray-800">Reserve Your Spot</h3>
-            <form className="space-y-4">
+            <form onSubmit={handleWaitingListSubmit} className="space-y-4">
               <div className="grid md:grid-cols-2 gap-4">
                 <input
                   type="text"
                   placeholder="First Name"
+                  value={waitingListForm.firstName}
+                  onChange={(e) => setWaitingListForm({...waitingListForm, firstName: e.target.value})}
                   className="w-full px-4 py-3 rounded-full border border-gray-300 focus:ring-2 focus:ring-[#FFD700] focus:border-transparent outline-none"
                   required
                 />
                 <input
                   type="text"
                   placeholder="Last Name"
+                  value={waitingListForm.lastName}
+                  onChange={(e) => setWaitingListForm({...waitingListForm, lastName: e.target.value})}
                   className="w-full px-4 py-3 rounded-full border border-gray-300 focus:ring-2 focus:ring-[#FFD700] focus:border-transparent outline-none"
                   required
                 />
@@ -425,30 +480,44 @@ export default function Landing() {
               <input
                 type="email"
                 placeholder="Email Address"
+                value={waitingListForm.email}
+                onChange={(e) => setWaitingListForm({...waitingListForm, email: e.target.value})}
                 className="w-full px-4 py-3 rounded-full border border-gray-300 focus:ring-2 focus:ring-[#FFD700] focus:border-transparent outline-none"
                 required
               />
-              <select className="w-full px-4 py-3 rounded-full border border-gray-300 focus:ring-2 focus:ring-[#FFD700] focus:border-transparent outline-none">
+              <select 
+                value={waitingListForm.city}
+                onChange={(e) => setWaitingListForm({...waitingListForm, city: e.target.value})}
+                className="w-full px-4 py-3 rounded-full border border-gray-300 focus:ring-2 focus:ring-[#FFD700] focus:border-transparent outline-none"
+                required
+              >
                 <option value="">Select Your City</option>
-                <option value="cincinnati">Cincinnati, OH</option>
-                <option value="columbus">Columbus, OH</option>
-                <option value="cleveland">Cleveland, OH</option>
-                <option value="chicago">Chicago, IL</option>
-                <option value="nashville">Nashville, TN</option>
-                <option value="atlanta">Atlanta, GA</option>
-                <option value="other">Other (we'll contact you)</option>
+                <option value="Cincinnati, OH">Cincinnati, OH</option>
+                <option value="Columbus, OH">Columbus, OH</option>
+                <option value="Cleveland, OH">Cleveland, OH</option>
+                <option value="Chicago, IL">Chicago, IL</option>
+                <option value="Nashville, TN">Nashville, TN</option>
+                <option value="Atlanta, GA">Atlanta, GA</option>
+                <option value="Other">Other (we'll contact you)</option>
               </select>
               <div className="flex items-start space-x-3 text-left">
-                <input type="checkbox" id="updates" className="mt-1.5 w-4 h-4 text-[#FFD700] rounded" />
+                <input 
+                  type="checkbox" 
+                  id="updates" 
+                  checked={waitingListForm.wantsUpdates}
+                  onChange={(e) => setWaitingListForm({...waitingListForm, wantsUpdates: e.target.checked})}
+                  className="mt-1.5 w-4 h-4 text-[#FFD700] rounded" 
+                />
                 <label htmlFor="updates" className="text-sm text-gray-700">
                   Send me updates about Urban Hikers events, new routes, and community news
                 </label>
               </div>
               <Button 
                 type="submit"
-                className="w-full bg-gradient-to-r from-black to-gray-600 text-[#FFD700] px-8 py-4 rounded-full text-lg font-bold transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                disabled={waitingListMutation.isPending}
+                className="w-full bg-gradient-to-r from-black to-gray-600 text-[#FFD700] px-8 py-4 rounded-full text-lg font-bold transition-all duration-300 hover:-translate-y-1 hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Join the Waiting List
+                {waitingListMutation.isPending ? "Joining..." : "Join the Waiting List"}
               </Button>
             </form>
             

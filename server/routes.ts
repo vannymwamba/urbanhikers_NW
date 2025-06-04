@@ -2,7 +2,7 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { setupAuth, isAuthenticated } from "./replitAuth";
-import { insertRouteSchema, insertBookingSchema, insertReviewSchema } from "@shared/schema";
+import { insertRouteSchema, insertBookingSchema, insertReviewSchema, insertWaitingListSchema } from "@shared/schema";
 import { z } from "zod";
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -188,6 +188,34 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
       console.error("Error creating review:", error);
       res.status(500).json({ message: "Failed to create review" });
+    }
+  });
+
+  // Waiting list endpoint
+  app.post("/api/waiting-list", async (req, res) => {
+    try {
+      const waitingListData = insertWaitingListSchema.parse(req.body);
+      
+      const entry = await storage.createWaitingListEntry(waitingListData);
+      
+      res.status(201).json({ 
+        message: "Successfully joined the waiting list!",
+        entry: {
+          id: entry.id,
+          firstName: entry.firstName,
+          city: entry.city,
+          createdAt: entry.createdAt
+        }
+      });
+    } catch (error) {
+      console.error("Error creating waiting list entry:", error);
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ message: "Invalid form data", errors: error.errors });
+      }
+      if (error.code === '23505') { // Unique constraint violation
+        return res.status(409).json({ message: "This email is already on our waiting list!" });
+      }
+      res.status(500).json({ message: "Failed to join waiting list" });
     }
   });
 

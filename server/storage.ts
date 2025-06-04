@@ -177,6 +177,19 @@ export class DatabaseStorage implements IStorage {
       .where(eq(reviews.userId, userId))
       .orderBy(desc(reviews.createdAt));
   }
+
+  // Waiting list operations
+  async createWaitingListEntry(entry: InsertWaitingListEntry): Promise<WaitingListEntry> {
+    const [newEntry] = await db.insert(waitingList).values(entry).returning();
+    return newEntry;
+  }
+
+  async getWaitingListEntries(): Promise<WaitingListEntry[]> {
+    return await db
+      .select()
+      .from(waitingList)
+      .orderBy(desc(waitingList.createdAt));
+  }
 }
 
 export const storage = new DatabaseStorage();
