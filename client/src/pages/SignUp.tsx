@@ -7,6 +7,8 @@ import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/hooks/use-toast";
 import { Eye, EyeOff, ArrowLeft, Check } from "lucide-react";
+import { GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/lib/firebase";
 import logoUrl from "@assets/Circlelogo.png";
 
 export default function SignUp() {
@@ -68,14 +70,18 @@ export default function SignUp() {
     }
 
     try {
-      const { createAccount } = await import("@/lib/auth");
-      await createAccount(formData.email, formData.password, formData.firstName, formData.lastName);
+      const result = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
+      const user = result.user;
+      
       toast({
         title: "Welcome to Urban Hikers!",
         description: "Your account has been created successfully.",
       });
+      
+      console.log("User created:", user);
       // Redirect will be handled by auth state change
     } catch (error: any) {
+      console.error("Registration error:", error);
       toast({
         title: "Registration failed",
         description: error.message || "Failed to create account. Please try again.",
@@ -89,14 +95,19 @@ export default function SignUp() {
   const handleGoogleSignUp = async () => {
     try {
       setIsLoading(true);
-      const { signInWithGoogle } = await import("@/lib/auth");
-      await signInWithGoogle();
+      const provider = new GoogleAuthProvider();
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      
       toast({
         title: "Welcome to Urban Hikers!",
         description: "Successfully created account with Google.",
       });
+      
+      console.log("User signed up with Google:", user);
       // Redirect will be handled by auth state change
     } catch (error: any) {
+      console.error("Google sign-up error:", error);
       toast({
         title: "Sign-up failed",
         description: error.message || "Failed to create account with Google. Please try again.",

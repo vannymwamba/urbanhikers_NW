@@ -7,6 +7,8 @@ import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/hooks/use-toast";
 import { Eye, EyeOff, ArrowLeft } from "lucide-react";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth } from "@/lib/firebase";
 import logoUrl from "@assets/Circlelogo.png";
 
 export default function SignIn() {
@@ -44,14 +46,19 @@ export default function SignIn() {
   const handleGoogleSignIn = async () => {
     try {
       setIsLoading(true);
-      const { signInWithGoogle } = await import("@/lib/auth");
-      await signInWithGoogle();
+      const provider = new GoogleAuthProvider();
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      
       toast({
         title: "Welcome back!",
         description: "Successfully signed in with Google.",
       });
+      
+      console.log("User signed in:", user);
       // Redirect will be handled by auth state change
     } catch (error: any) {
+      console.error("Google sign-in error:", error);
       toast({
         title: "Sign-in failed",
         description: error.message || "Failed to sign in with Google. Please try again.",
