@@ -16,6 +16,10 @@ const googleProvider = new GoogleAuthProvider();
 
 // Sign in with Google
 export const signInWithGoogle = async () => {
+  if (!auth) {
+    throw new Error('Firebase authentication is not configured. Please provide a valid API key.');
+  }
+  
   try {
     const result = await signInWithPopup(auth, googleProvider);
     const user = result.user;
@@ -32,25 +36,39 @@ export const signInWithGoogle = async () => {
     }
     
     return user;
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error signing in with Google:', error);
+    if (error.code === 'auth/configuration-not-found' || error.code === 'auth/invalid-api-key') {
+      throw new Error('Firebase is not properly configured. Please check your API key.');
+    }
     throw error;
   }
 };
 
 // Sign in with email and password
 export const signInWithEmail = async (email: string, password: string) => {
+  if (!auth) {
+    throw new Error('Firebase authentication is not configured. Please provide a valid API key.');
+  }
+  
   try {
     const result = await signInWithEmailAndPassword(auth, email, password);
     return result.user;
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error signing in with email:', error);
+    if (error.code === 'auth/configuration-not-found' || error.code === 'auth/invalid-api-key') {
+      throw new Error('Firebase is not properly configured. Please check your API key.');
+    }
     throw error;
   }
 };
 
 // Create account with email and password
 export const createAccount = async (email: string, password: string, firstName: string, lastName: string) => {
+  if (!auth) {
+    throw new Error('Firebase authentication is not configured. Please provide a valid API key.');
+  }
+  
   try {
     const result = await createUserWithEmailAndPassword(auth, email, password);
     const user = result.user;
@@ -64,8 +82,11 @@ export const createAccount = async (email: string, password: string, firstName: 
     });
     
     return user;
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error creating account:', error);
+    if (error.code === 'auth/configuration-not-found' || error.code === 'auth/invalid-api-key') {
+      throw new Error('Firebase is not properly configured. Please check your API key.');
+    }
     throw error;
   }
 };
