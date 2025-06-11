@@ -22,21 +22,44 @@ export default function SignIn() {
     e.preventDefault();
     setIsLoading(true);
 
-    // TODO: Implement actual authentication when Firebase credentials are configured
-    toast({
-      title: "Authentication Coming Soon",
-      description: "Sign-in functionality will be enabled once Firebase is configured.",
-    });
-
-    setIsLoading(false);
+    try {
+      const { signInWithEmail } = await import("@/lib/auth");
+      await signInWithEmail(formData.email, formData.password);
+      toast({
+        title: "Welcome back!",
+        description: "Successfully signed in to your account.",
+      });
+      // Redirect will be handled by auth state change
+    } catch (error: any) {
+      toast({
+        title: "Sign-in failed",
+        description: error.message || "Invalid email or password. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  const handleGoogleSignIn = () => {
-    // TODO: Implement Google Sign-In when Firebase credentials are configured
-    toast({
-      title: "Google Sign-In Coming Soon",
-      description: "Google authentication will be available once Firebase is configured.",
-    });
+  const handleGoogleSignIn = async () => {
+    try {
+      setIsLoading(true);
+      const { signInWithGoogle } = await import("@/lib/auth");
+      await signInWithGoogle();
+      toast({
+        title: "Welcome back!",
+        description: "Successfully signed in with Google.",
+      });
+      // Redirect will be handled by auth state change
+    } catch (error: any) {
+      toast({
+        title: "Sign-in failed",
+        description: error.message || "Failed to sign in with Google. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (

@@ -67,21 +67,44 @@ export default function SignUp() {
       return;
     }
 
-    // TODO: Implement actual registration when Firebase credentials are configured
-    toast({
-      title: "Registration Coming Soon",
-      description: "Account creation will be enabled once Firebase is configured.",
-    });
-
-    setIsLoading(false);
+    try {
+      const { createAccount } = await import("@/lib/auth");
+      await createAccount(formData.email, formData.password, formData.firstName, formData.lastName);
+      toast({
+        title: "Welcome to Urban Hikers!",
+        description: "Your account has been created successfully.",
+      });
+      // Redirect will be handled by auth state change
+    } catch (error: any) {
+      toast({
+        title: "Registration failed",
+        description: error.message || "Failed to create account. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  const handleGoogleSignUp = () => {
-    // TODO: Implement Google Sign-Up when Firebase credentials are configured
-    toast({
-      title: "Google Sign-Up Coming Soon",
-      description: "Google registration will be available once Firebase is configured.",
-    });
+  const handleGoogleSignUp = async () => {
+    try {
+      setIsLoading(true);
+      const { signInWithGoogle } = await import("@/lib/auth");
+      await signInWithGoogle();
+      toast({
+        title: "Welcome to Urban Hikers!",
+        description: "Successfully created account with Google.",
+      });
+      // Redirect will be handled by auth state change
+    } catch (error: any) {
+      toast({
+        title: "Sign-up failed",
+        description: error.message || "Failed to create account with Google. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
