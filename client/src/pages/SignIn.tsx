@@ -43,19 +43,19 @@ export default function SignIn() {
     }
   };
 
-  const handleGoogleSignIn = async (e: React.MouseEvent) => {
-    e.preventDefault();
+  const handleGoogleSignIn = async () => {
     try {
       setIsLoading(true);
-      const provider = await new GoogleAuthProvider();
+      const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(auth, provider);
+      const user = result.user;
       
       toast({
         title: "Welcome back!",
         description: "Successfully signed in with Google.",
       });
       
-      console.log("User signed in:", result.user);
+      console.log("User signed in:", user);
       // Redirect will be handled by auth state change
     } catch (error: any) {
       console.error("Google sign-in error:", error);

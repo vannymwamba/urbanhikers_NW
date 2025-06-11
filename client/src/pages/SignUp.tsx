@@ -92,19 +92,19 @@ export default function SignUp() {
     }
   };
 
-  const handleGoogleSignUp = async (e: React.MouseEvent) => {
-    e.preventDefault();
+  const handleGoogleSignUp = async () => {
     try {
       setIsLoading(true);
-      const provider = await new GoogleAuthProvider();
+      const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(auth, provider);
+      const user = result.user;
       
       toast({
         title: "Welcome to Urban Hikers!",
         description: "Successfully created account with Google.",
       });
       
-      console.log("User signed up with Google:", result.user);
+      console.log("User signed up with Google:", user);
       // Redirect will be handled by auth state change
     } catch (error: any) {
       console.error("Google sign-up error:", error);
