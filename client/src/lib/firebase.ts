@@ -28,9 +28,11 @@ try {
   db = getFirestore(app);
   storage = getStorage(app);
   console.log("Firebase initialized successfully");
+  console.log("Auth domain:", firebaseConfig.authDomain);
+  console.log("Project ID:", firebaseConfig.projectId);
 } catch (error) {
   console.error("Firebase initialization failed:", error);
-  console.log("Please provide a valid FIREBASE_API_KEY to enable authentication");
+  console.log("Please check Firebase configuration");
 }
 
 export { auth, db, storage };
