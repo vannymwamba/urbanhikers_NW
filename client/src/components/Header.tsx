@@ -7,8 +7,11 @@ export default function Header() {
   const { isAuthenticated, user } = useAuth();
 
   const handleLogin = () => {
-    // TODO: Implement Firebase Google Sign-In when credentials are configured
-    console.log("Firebase authentication will be implemented when credentials are added");
+    window.location.href = "/sign-in";
+  };
+
+  const handleSignUp = () => {
+    window.location.href = "/sign-up";
   };
 
   const handleLogout = () => {
@@ -84,7 +87,7 @@ export default function Header() {
                 Sign In
               </Button>
               <Button
-                onClick={handleLogin}
+                onClick={handleSignUp}
                 className="bg-white text-black px-6 py-3 rounded-full font-bold transition-all duration-300 hover:-translate-y-1 hover:shadow-xl border border-black/20"
               >
                 Sign Up

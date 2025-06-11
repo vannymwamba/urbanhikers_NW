@@ -8,6 +8,8 @@ import Landing from "@/pages/Landing";
 import Home from "@/pages/Home";
 import Routes from "@/pages/Routes";
 import CreateRoute from "@/pages/CreateRoute";
+import SignIn from "@/pages/SignIn";
+import SignUp from "@/pages/SignUp";
 import { useAuth } from "@/hooks/useAuth";
 
 function Router() {
@@ -16,6 +18,8 @@ function Router() {
   return (
     <Switch>
       <Route path="/routes" component={Routes} />
+      <Route path="/sign-in" component={SignIn} />
+      <Route path="/sign-up" component={SignUp} />
       {isAuthenticated && <Route path="/create-route" component={CreateRoute} />}
       {isLoading || !isAuthenticated ? (
         <Route path="/" component={Landing} />
