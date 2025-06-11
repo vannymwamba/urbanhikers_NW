@@ -5,7 +5,7 @@ import { getStorage } from 'firebase/storage';
 
 // Firebase configuration for urbunhikers project
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "PLACEHOLDER_REPLACE_WITH_ACTUAL_KEY",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "AIzaSyAo4M__4u9aFCGN5ZH45ZahB5aU6YrCeCE",
   authDomain: "urbunhikers.firebaseapp.com",
   projectId: "urbunhikers",
   storageBucket: "urbunhikers.firebasestorage.app",
@@ -13,6 +13,8 @@ const firebaseConfig = {
   appId: "1:293208679604:web:ac2733e3af61aac4b263e1",
   measurementId: "G-ZZKYGR142X"
 };
+
+console.log("Firebase config API key:", firebaseConfig.apiKey);
 
 // Initialize Firebase
 let app: any = null;
