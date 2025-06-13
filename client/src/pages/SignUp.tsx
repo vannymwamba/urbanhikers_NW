@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/hooks/use-toast";
 import { Eye, EyeOff, ArrowLeft, Check } from "lucide-react";
-import { GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword } from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "@/lib/firebase";
 import logoUrl from "@assets/Circlelogo.png";
 
@@ -70,8 +70,13 @@ export default function SignUp() {
     }
 
     try {
-      const result = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
-      const user = result.user;
+      const { createAccount } = await import("@/lib/auth");
+      const user = await createAccount(
+        formData.email, 
+        formData.password, 
+        formData.firstName, 
+        formData.lastName
+      );
       
       toast({
         title: "Welcome to Urban Hikers!",
