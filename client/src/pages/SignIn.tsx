@@ -9,6 +9,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Eye, EyeOff, ArrowLeft } from "lucide-react";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "@/lib/firebase";
+import AuthDialog from "@/components/AuthDialog";
 import logoUrl from "@assets/Circlelogo.png";
 
 export default function SignIn() {
@@ -18,6 +19,7 @@ export default function SignIn() {
   });
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [showAuthDialog, setShowAuthDialog] = useState(false);
   const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -39,23 +41,13 @@ export default function SignIn() {
       let description = "Please try again.";
       
       if (error.code === "auth/user-not-found" || error.code === "auth/invalid-credential") {
-        title = "Account not found";
-        description = "No account found with this email address. You can create a new account instead.";
-        
-        // Show toast first
         toast({
           title: "Account not found",
           description: "No account found with this email address.",
           variant: "destructive",
         });
         
-        // Show confirm dialog for action
-        setTimeout(() => {
-          if (confirm("Would you like to create a new account with this email instead?")) {
-            window.location.href = "/sign-up";
-          }
-        }, 1000);
-        
+        setShowAuthDialog(true);
         setIsLoading(false);
         return;
       } else if (error.code === "auth/wrong-password" || error.code === "auth/invalid-password") {
@@ -240,6 +232,14 @@ export default function SignIn() {
           </Link>
         </div>
       </div>
+
+      <AuthDialog
+        isOpen={showAuthDialog}
+        onClose={() => setShowAuthDialog(false)}
+        type="account-not-found"
+        email={formData.email}
+        onAction={() => window.location.href = "/sign-up"}
+      />
     </div>
   );
 }

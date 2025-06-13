@@ -9,6 +9,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Eye, EyeOff, ArrowLeft, Check } from "lucide-react";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "@/lib/firebase";
+import AuthDialog from "@/components/AuthDialog";
 import logoUrl from "@assets/Circlelogo.png";
 
 export default function SignUp() {
@@ -24,6 +25,7 @@ export default function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [showAuthDialog, setShowAuthDialog] = useState(false);
   const { toast } = useToast();
 
   const passwordRequirements = [
@@ -92,23 +94,13 @@ export default function SignUp() {
       let description = "Please try again.";
       
       if (error.code === "auth/email-already-in-use") {
-        title = "Account already exists";
-        description = "An account with this email already exists. You can sign in instead.";
-        
-        // Show toast first
         toast({
           title: "Account already exists",
           description: "An account with this email already exists.",
           variant: "destructive",
         });
         
-        // Show confirm dialog for action
-        setTimeout(() => {
-          if (confirm("Would you like to sign in with this email instead?")) {
-            window.location.href = "/sign-in";
-          }
-        }, 1000);
-        
+        setShowAuthDialog(true);
         setIsLoading(false);
         return;
       } else if (error.code === "auth/weak-password") {
