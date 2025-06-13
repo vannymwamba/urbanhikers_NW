@@ -33,9 +33,44 @@ export default function SignIn() {
       });
       // Redirect will be handled by auth state change
     } catch (error: any) {
+      console.error("Sign-in error:", error);
+      
+      let title = "Sign-in failed";
+      let description = "Please try again.";
+      
+      if (error.code === "auth/user-not-found" || error.code === "auth/invalid-credential") {
+        title = "Account not found";
+        description = "No account found with this email address. You can create a new account instead.";
+        
+        // Show toast first
+        toast({
+          title: "Account not found",
+          description: "No account found with this email address.",
+          variant: "destructive",
+        });
+        
+        // Show confirm dialog for action
+        setTimeout(() => {
+          if (confirm("Would you like to create a new account with this email instead?")) {
+            window.location.href = "/sign-up";
+          }
+        }, 1000);
+        
+        setIsLoading(false);
+        return;
+      } else if (error.code === "auth/wrong-password" || error.code === "auth/invalid-password") {
+        title = "Incorrect password";
+        description = "Please check your password and try again.";
+      } else if (error.code === "auth/invalid-email") {
+        title = "Invalid email";
+        description = "Please enter a valid email address.";
+      } else {
+        description = error.message || "Invalid email or password. Please try again.";
+      }
+      
       toast({
-        title: "Sign-in failed",
-        description: error.message || "Invalid email or password. Please try again.",
+        title,
+        description,
         variant: "destructive",
       });
     } finally {

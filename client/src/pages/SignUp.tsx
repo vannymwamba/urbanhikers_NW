@@ -87,9 +87,43 @@ export default function SignUp() {
       // Redirect will be handled by auth state change
     } catch (error: any) {
       console.error("Registration error:", error);
+      
+      let title = "Registration failed";
+      let description = "Please try again.";
+      
+      if (error.code === "auth/email-already-in-use") {
+        title = "Account already exists";
+        description = "An account with this email already exists. You can sign in instead.";
+        
+        // Show toast first
+        toast({
+          title: "Account already exists",
+          description: "An account with this email already exists.",
+          variant: "destructive",
+        });
+        
+        // Show confirm dialog for action
+        setTimeout(() => {
+          if (confirm("Would you like to sign in with this email instead?")) {
+            window.location.href = "/sign-in";
+          }
+        }, 1000);
+        
+        setIsLoading(false);
+        return;
+      } else if (error.code === "auth/weak-password") {
+        title = "Password too weak";
+        description = "Please choose a stronger password that meets all requirements.";
+      } else if (error.code === "auth/invalid-email") {
+        title = "Invalid email";
+        description = "Please enter a valid email address.";
+      } else {
+        description = error.message || "Failed to create account. Please try again.";
+      }
+      
       toast({
-        title: "Registration failed",
-        description: error.message || "Failed to create account. Please try again.",
+        title,
+        description,
         variant: "destructive",
       });
     } finally {
