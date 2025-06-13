@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
 import { Link } from "wouter";
+import { Check, Star } from "lucide-react";
 import type { Route, Booking } from "@shared/schema";
 
 export default function Home() {

@@ -1,14 +1,17 @@
+import { useState } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { signOut } from "firebase/auth";
 import { auth } from "@/lib/firebase";
 import { useToast } from "@/hooks/use-toast";
+import LogoutDialog from "@/components/LogoutDialog";
 import logoUrl from "@assets/Circlelogo.png";
 
 export default function Header() {
   const { isAuthenticated, user } = useAuth();
   const { toast } = useToast();
+  const [showLogoutDialog, setShowLogoutDialog] = useState(false);
 
   const handleLogin = () => {
     window.location.href = "/sign-in";
@@ -18,7 +21,11 @@ export default function Header() {
     window.location.href = "/sign-up";
   };
 
-  const handleLogout = async () => {
+  const handleLogoutClick = () => {
+    setShowLogoutDialog(true);
+  };
+
+  const handleLogoutConfirm = async () => {
     try {
       await signOut(auth);
       toast({
@@ -89,7 +96,7 @@ export default function Header() {
                 </span>
               </div>
               <Button
-                onClick={handleLogout}
+                onClick={handleLogoutClick}
                 className="bg-gradient-to-r from-black to-gray-600 text-[#FFD700] px-6 py-3 rounded-full font-bold transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
               >
                 Sign Out
@@ -113,6 +120,13 @@ export default function Header() {
           )}
         </div>
       </nav>
+
+      <LogoutDialog
+        isOpen={showLogoutDialog}
+        onClose={() => setShowLogoutDialog(false)}
+        onConfirm={handleLogoutConfirm}
+        userName={user?.displayName || user?.email?.split('@')[0]}
+      />
     </header>
   );
 }
