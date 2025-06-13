@@ -1,10 +1,14 @@
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
+import { signOut } from "firebase/auth";
+import { auth } from "@/lib/firebase";
+import { useToast } from "@/hooks/use-toast";
 import logoUrl from "@assets/Circlelogo.png";
 
 export default function Header() {
   const { isAuthenticated, user } = useAuth();
+  const { toast } = useToast();
 
   const handleLogin = () => {
     window.location.href = "/sign-in";
@@ -14,9 +18,22 @@ export default function Header() {
     window.location.href = "/sign-up";
   };
 
-  const handleLogout = () => {
-    // TODO: Implement Firebase sign out when credentials are configured  
-    console.log("Firebase sign out will be implemented when credentials are added");
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      toast({
+        title: "Signed out successfully",
+        description: "You have been logged out of Urban Hikers.",
+      });
+      console.log("User signed out successfully");
+    } catch (error: any) {
+      console.error("Error signing out:", error);
+      toast({
+        title: "Sign out failed",
+        description: "There was an error signing you out. Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -60,15 +77,21 @@ export default function Header() {
           {isAuthenticated ? (
             <>
               <div className="flex items-center space-x-2">
-                {(user as any)?.profileImageUrl && (
+                {user?.photoURL ? (
                   <img 
-                    src={(user as any).profileImageUrl} 
+                    src={user.photoURL} 
                     alt="Profile" 
                     className="w-8 h-8 rounded-full object-cover"
                   />
+                ) : (
+                  <div className="w-8 h-8 bg-[#FFD700] rounded-full flex items-center justify-center">
+                    <span className="text-black font-bold text-sm">
+                      {user?.displayName?.[0] || user?.email?.[0] || 'U'}
+                    </span>
+                  </div>
                 )}
                 <span className="font-medium">
-                  {(user as any)?.firstName || (user as any)?.email}
+                  {user?.displayName || user?.email}
                 </span>
               </div>
               <Button

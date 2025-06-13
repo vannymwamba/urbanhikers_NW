@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { User as FirebaseUser } from 'firebase/auth';
+import { User as FirebaseUser, onAuthStateChanged } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
 
 export function useAuth() {
@@ -7,20 +7,24 @@ export function useAuth() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // If Firebase auth is not initialized, return mock state for preview
     if (!auth) {
       setIsLoading(false);
       return;
     }
 
-    // TODO: Implement Firebase auth state listener when credentials are configured
-    setIsLoading(false);
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setFirebaseUser(user);
+      setIsLoading(false);
+      console.log('Auth state changed:', user ? 'User signed in' : 'User signed out');
+    });
+
+    return () => unsubscribe();
   }, []);
 
   return {
-    user: null, // Will be populated when Firebase is configured
+    user: firebaseUser,
     firebaseUser,
     isLoading,
-    isAuthenticated: false, // Will work when Firebase is configured
+    isAuthenticated: !!firebaseUser,
   };
 }

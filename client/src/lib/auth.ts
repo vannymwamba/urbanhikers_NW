@@ -93,9 +93,14 @@ export const createAccount = async (email: string, password: string, firstName: 
 
 // Sign out
 export const signOutUser = async () => {
+  if (!auth) {
+    throw new Error('Firebase authentication is not configured.');
+  }
+  
   try {
     await signOut(auth);
-  } catch (error) {
+    console.log('User signed out successfully');
+  } catch (error: any) {
     console.error('Error signing out:', error);
     throw error;
   }
