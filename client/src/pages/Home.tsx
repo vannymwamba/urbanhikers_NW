@@ -144,6 +144,150 @@ export default function Home() {
             </div>
           </section>
         </div>
+
+        {/* Pricing Section */}
+        <section id="pricing" className="py-20 bg-white">
+          <div className="container mx-auto max-w-6xl px-6">
+            <h2 className="text-4xl font-bold text-center mb-4 text-gray-800">Join the Movement</h2>
+            <div className="w-16 h-1 bg-gradient-to-r from-[#FFD700] to-[#FFA500] mx-auto mb-16 rounded"></div>
+            
+            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+              {/* Individual Walk */}
+              <div className="bg-gradient-to-b from-gray-50 to-white p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+                <div className="text-center">
+                  <h3 className="text-2xl font-bold mb-4 text-gray-800">Drop-In Walk</h3>
+                  <div className="mb-6">
+                    <span className="text-4xl font-bold text-[#FFA500]">$25</span>
+                    <span className="text-gray-600 text-lg">/person</span>
+                  </div>
+                  <ul className="space-y-3 mb-8 text-left">
+                    <li className="flex items-start">
+                      <Check className="w-5 h-5 text-[#FFD700] mr-3 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700">Join any scheduled walk</span>
+                    </li>
+                    <li className="flex items-start">
+                      <Check className="w-5 h-5 text-[#FFD700] mr-3 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700">Meet fellow urban explorers</span>
+                    </li>
+                    <li className="flex items-start">
+                      <Check className="w-5 h-5 text-[#FFD700] mr-3 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700">Discover hidden gems</span>
+                    </li>
+                    <li className="flex items-start">
+                      <Check className="w-5 h-5 text-[#FFD700] mr-3 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700">No long-term commitment</span>
+                    </li>
+                  </ul>
+                  <Button className="w-full bg-[#FFA500] hover:bg-[#FFD700] text-white font-bold py-3 rounded-xl transition-colors">
+                    Book Now
+                  </Button>
+                </div>
+              </div>
+
+              {/* Monthly Membership */}
+              <div className="bg-gradient-to-r from-[#FFD700] to-[#FFA500] p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 transform scale-105 relative">
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-black text-[#FFD700] px-4 py-2 rounded-full text-sm font-bold">
+                  Most Popular
+                </div>
+                <div className="text-center">
+                  <h3 className="text-2xl font-bold mb-4 text-black">Monthly Explorer</h3>
+                  <div className="mb-6">
+                    <span className="text-4xl font-bold text-black">$75</span>
+                    <span className="text-black/70 text-lg">/month</span>
+                  </div>
+                  <ul className="space-y-3 mb-8 text-left">
+                    <li className="flex items-start">
+                      <Check className="w-5 h-5 text-black mr-3 mt-0.5 flex-shrink-0" />
+                      <span className="text-black">Unlimited walks per month</span>
+                    </li>
+                    <li className="flex items-start">
+                      <Check className="w-5 h-5 text-black mr-3 mt-0.5 flex-shrink-0" />
+                      <span className="text-black">Priority booking for special events</span>
+                    </li>
+                    <li className="flex items-start">
+                      <Check className="w-5 h-5 text-black mr-3 mt-0.5 flex-shrink-0" />
+                      <span className="text-black">Monthly community meetup</span>
+                    </li>
+                    <li className="flex items-start">
+                      <Check className="w-5 h-5 text-black mr-3 mt-0.5 flex-shrink-0" />
+                      <span className="text-black">Digital route maps & guides</span>
+                    </li>
+                  </ul>
+                  <Button className="w-full bg-black hover:bg-gray-800 text-[#FFD700] font-bold py-3 rounded-xl transition-colors">
+                    Join Community
+                  </Button>
+                </div>
+              </div>
+
+              {/* Annual Membership */}
+              <div className="bg-gradient-to-b from-gray-50 to-white p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+                <div className="text-center">
+                  <h3 className="text-2xl font-bold mb-4 text-gray-800">Annual Adventurer</h3>
+                  <div className="mb-6">
+                    <span className="text-4xl font-bold text-[#FFA500]">$750</span>
+                    <span className="text-gray-600 text-lg">/year</span>
+                    <div className="text-sm text-green-600 font-semibold mt-1">Save $150!</div>
+                  </div>
+                  <ul className="space-y-3 mb-8 text-left">
+                    <li className="flex items-start">
+                      <Check className="w-5 h-5 text-[#FFD700] mr-3 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700">Everything in Monthly Explorer</span>
+                    </li>
+                    <li className="flex items-start">
+                      <Check className="w-5 h-5 text-[#FFD700] mr-3 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700">Exclusive annual retreat</span>
+                    </li>
+                    <li className="flex items-start">
+                      <Check className="w-5 h-5 text-[#FFD700] mr-3 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700">Urban Hikers merchandise</span>
+                    </li>
+                    <li className="flex items-start">
+                      <Check className="w-5 h-5 text-[#FFD700] mr-3 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700">Beta access to new routes</span>
+                    </li>
+                  </ul>
+                  <Button className="w-full bg-[#FFA500] hover:bg-[#FFD700] text-white font-bold py-3 rounded-xl transition-colors">
+                    Go Annual
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* About Section */}
+        <section id="about" className="py-20 bg-gradient-to-r from-gray-50 to-white">
+          <div className="container mx-auto max-w-4xl px-6">
+            <h2 className="text-4xl font-bold text-center mb-4 text-gray-800">Our Story</h2>
+            <div className="w-16 h-1 bg-gradient-to-r from-[#FFD700] to-[#FFA500] mx-auto mb-16 rounded"></div>
+            
+            <div className="bg-white p-12 rounded-3xl shadow-xl">
+              <div className="text-lg leading-relaxed text-gray-700 space-y-6">
+                <p>
+                  In 2014, we started with a simple idea—a book club that walked. What began as casual discussions about literature while strolling through Cincinnati's parks slowly evolved into something deeper. Step by step, conversation by conversation, we realized we weren't just walking to talk—we were walking to connect.
+                </p>
+                
+                <p>
+                  As our group grew, so did our purpose. The books faded into the background, but the walking remained—and with it, an unexpected transformation. Strangers became friends. Neighbors became allies. A book club became Urban Hikers: a community-powered movement dedicated to bridging divides, one step at a time.
+                </p>
+                
+                <p>
+                  Today, Urban Hikers has grown beyond Cincinnati to cities across the nation. What started with a handful of book lovers has become a network of thousands who believe in the power of walking together. We've discovered that when you change the way you see your city, you change the way you see each other.
+                </p>
+                
+                <p>
+                  Our mission remains simple: to create meaningful connections through shared urban adventures. Whether you're exploring historic neighborhoods, discovering hidden gems, or simply getting some fresh air with like-minded people, every step builds community.
+                </p>
+                
+                <div className="text-center mt-10">
+                  <div className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[#FFD700] to-[#FFA500] rounded-full">
+                    <span className="text-black font-bold text-lg">From Cincinnati book club to nationwide movement</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
 
       <Footer />
