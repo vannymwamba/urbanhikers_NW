@@ -3,6 +3,7 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signOut,
+  updateProfile,
   GoogleAuthProvider,
   onAuthStateChanged,
   User as FirebaseUser
@@ -73,6 +74,11 @@ export const createAccount = async (email: string, password: string, firstName: 
     const result = await createUserWithEmailAndPassword(auth, email, password);
     const user = result.user;
     
+    // Update the user's display name in Firebase Auth
+    await updateProfile(user, {
+      displayName: `${firstName} ${lastName}`
+    });
+    
     // Create user document in Firestore
     await createUser({
       email: user.email || '',
@@ -81,6 +87,7 @@ export const createAccount = async (email: string, password: string, firstName: 
       profileImageUrl: ''
     });
     
+    console.log('User account created successfully:', user.email);
     return user;
   } catch (error: any) {
     console.error('Error creating account:', error);
