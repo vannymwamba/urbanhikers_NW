@@ -54,13 +54,7 @@ export default function Header() {
               Routes
             </Link>
           </li>
-          {isAuthenticated && (
-            <li>
-              <Link href="/create-route" className="text-[#FFD700] hover:bg-[#FFD700]/20 px-4 py-2 rounded-full transition-all duration-300 hover:-translate-y-1 font-medium">
-                Create Route
-              </Link>
-            </li>
-          )}
+
           <li>
             <a href="#pricing" className="text-[#FFD700] hover:bg-[#FFD700]/20 px-4 py-2 rounded-full transition-all duration-300 hover:-translate-y-1 font-medium">
               Pricing
