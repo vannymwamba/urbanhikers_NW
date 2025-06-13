@@ -383,6 +383,14 @@ export default function SignUp() {
           </Link>
         </div>
       </div>
+
+      <AuthDialog
+        isOpen={showAuthDialog}
+        onClose={() => setShowAuthDialog(false)}
+        type="account-exists"
+        email={formData.email}
+        onAction={() => window.location.href = "/sign-in"}
+      />
     </div>
   );
 }
